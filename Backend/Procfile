@@ -1,2 +1,0 @@
-web: gunicorn dist.product_importer_core.wsgi:application
-worker: celery -A dist.product_importer_core worker --loglevel=info
