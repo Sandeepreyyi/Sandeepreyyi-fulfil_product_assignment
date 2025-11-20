@@ -64,15 +64,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'product_importer_core.urls'
 
-SECRET_KEY = config("SECRET_KEY", default="your-default-key") 
 
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-REDIS_URL = os.environ.get("REDIS_URL")  # Add this in Render env vars
+REDIS_URL = os.environ.get(
+    "REDIS_URL",
+    "redis://localhost:6379/0")
 
 
+
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
 
 TEMPLATES = [
     {
@@ -95,25 +99,24 @@ WSGI_APPLICATION = 'product_importer_core.wsgi.application'
 
 # Database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'product_importer_db',
-        'USER':  'postgres',
-        'PASSWORD': 'student',
-        'HOST':  'localhost',
-        'PORT': '5432'
-    }
-}
-
-
-
-
 # DATABASES = {
-#     "default": dj_database_url.config(
-#         default=os.environ.get("DATABASE_URL")
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'product_importer_db',
+#         'USER':  'postgres',
+#         'PASSWORD': 'student',
+#         'HOST':  'localhost',
+#         'PORT': '5432'
+#     }
 # }
+
+
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
+}
 
 
 # CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use your Redis port
