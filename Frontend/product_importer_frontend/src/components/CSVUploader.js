@@ -104,7 +104,7 @@ const CSVUploader = () => {
       setStatusMessage("Uploading...");
 
       const res = await axios.post(
-        "http://localhost:8000/upload-csv/",
+        `${API_BASE}upload-csv/`,
         formData,
         {
           onUploadProgress: (event) => {

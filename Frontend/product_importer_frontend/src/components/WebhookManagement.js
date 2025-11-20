@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_API_BASE_URL}/webhooks/`;
+const API = `${process.env.REACT_APP_API_BASE_URL}webhooks/`;
 
 const WebhookManagement = () => {
   const [webhooks, setWebhooks] = useState([]);
