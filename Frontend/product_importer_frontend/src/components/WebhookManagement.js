@@ -20,7 +20,6 @@ const WebhookManagement = () => {
   const loadWebhooks = async () => {
     try {
       const res = await axios.get(API);
-      console.log("Load Webhooks Response:", res);
       const { message_type, data } = res.data;
       if (message_type === "success")
       {
@@ -33,7 +32,6 @@ const WebhookManagement = () => {
     }
   };
 
-  console.log("Webhooks:", webhooks);
 
   useEffect(() => {
     loadWebhooks();

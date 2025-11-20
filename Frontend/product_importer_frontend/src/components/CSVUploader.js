@@ -86,7 +86,6 @@ const CSVUploader = () => {
           );
         }
       } catch (err) {
-        console.error("Polling error:", err);
         clearInterval(interval);
       }
     }, 1000);
@@ -126,7 +125,6 @@ const CSVUploader = () => {
 
       pollTask(job_id);
     } catch (error) {
-      console.error(error);
       setStatusType("error");
       setStatusMessage("Upload failed. Try again.");
     }
